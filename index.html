@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infotainment Basic Unit Wise</title>
+  <style>
+    * { font-family: Calibri; font-size: 20px; }
+    table, th, td {
+      border: solid 1px #ddd;
+      border-collapse: collapse;
+      padding: 2px 3px;
+      text-align: center;
+    }
+    th {
+      font-weight:bold;
+    }
+    p { padding: 10px 0; }
+  </style>
+</head>
+<body>
+ <!-- <h2>Click the button to create a table using data extracted from a JSON array.</h2>-->
+         
+         <input type='button' onclick='tableFromJsonBU1()' value='BU1' />
+		 <input type='button' onclick='tableFromJsonBU2()' value='BU2' />
+		 <input type='button' onclick='tableFromJsonBU3()' value='BU3' />
+		 <input type='button' onclick='tableFromJsonBU4()' value='BU4' />
+  <p id='showData'></p>
+  <p id='msg'></p>
+  
+ </body>
+
+<script>
+   
+	 function commonFunction(objTable) {
+	 
+	  // Extract value from table header. 
+    // (Basic Unit,	Coach Number,	Coach_Position	,Coach_Type	,IP_Address)
+   
+	  let col = [];
+    for (let i = 0; i < objTable.length; i++) {
+      for (let key in objTable[i]) {
+        if (col.indexOf(key) === -1) {
+          col.push(key);
+        }
+      }
+    }
+
+    // Create a table.
+    const table = document.createElement("table");
+
+    // Create table header row using the extracted headers above.
+    let tr = table.insertRow(-1);                   // table row.
+
+    for (let i = 0; i < col.length; i++) {
+      let th = document.createElement("th");      // table header.
+      th.innerHTML = col[i];
+      tr.appendChild(th);
+    }
+
+    // add json data to the table as rows.
+    for (let i = 0; i < objTable.length; i++) {
+
+      tr = table.insertRow(-1);
+
+      for (let j = 0; j < col.length; j++) {
+        let tabCell = tr.insertCell(-1);
+		tabCell.innerHTML = objTable[i][col[j]];
+		if(j == (col.length-1)){
+				tabCell.innerHTML = '<a href="'+'http://'+objTable[i][col[j]]+'" target="_blank" >'+objTable[i][col[j]]+'</a>';
+				}
+      }
+    }
+
+    // Now, add the newly created table with json data, to a container.
+    const divShowData = document.getElementById('showData');
+    divShowData.innerHTML = "";
+    divShowData.appendChild(table);
+	 
+	 }
+	  
+	
+let tableFromJsonBU1 = () => {
+    // the json data.
+
+    const tabBU1 = [
+       {
+        "Basic Unit": "1",
+        "Coach Number": "1",
+        "Coach_Position": "1",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.32.1.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "2",
+        "Coach_Position": "2",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.32.4.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "3",
+        "Coach_Position": "3",
+        "Coach_Type": "TC",
+        "IP_Address": "10.32.3.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "4",
+        "Coach_Position": "4",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.32.5.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "1",
+        "Coach_Position": "5",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.160.130.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "2",
+        "Coach_Position": "6",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.132.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "3",
+        "Coach_Position": "7",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.131.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "4",
+        "Coach_Position": "8",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.133.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "1",
+        "Coach_Position": "9",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.160.194.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "2",
+        "Coach_Position": "10",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.196.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "3",
+        "Coach_Position": "11",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.195.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "4",
+        "Coach_Position": "12",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.197.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "1",
+        "Coach_Position": "13",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.161.5.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "2",
+        "Coach_Position": "14",
+        "Coach_Type": "TC",
+        "IP_Address": "10.161.3.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "3",
+        "Coach_Position": "15",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.161.4.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "4",
+        "Coach_Position": "16",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.161.1.23"
+    }
+	]
+   commonFunction(tabBU1);
+     
+        }
+	
+	
+	 let tableFromJsonBU2 = () => {
+    // the json data.
+
+    const tabBU2 = [
+    {
+        "Basic Unit": "1",
+        "Coach Number": "1",
+        "Coach_Position": "1",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.160.65.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "2",
+        "Coach_Position": "2",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.68.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "3",
+        "Coach_Position": "3",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.67.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "4",
+        "Coach_Position": "4",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.69.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "1",
+        "Coach_Position": "5",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.32.2.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "2",
+        "Coach_Position": "6",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.32.4.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "3",
+        "Coach_Position": "7",
+        "Coach_Type": "TC",
+        "IP_Address": "10.32.3.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "4",
+        "Coach_Position": "8",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.32.5.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "1",
+        "Coach_Position": "9",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.160.194.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "2",
+        "Coach_Position": "10",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.196.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "3",
+        "Coach_Position": "11",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.195.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "4",
+        "Coach_Position": "12",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.197.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "1",
+        "Coach_Position": "13",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.161.5.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "2",
+        "Coach_Position": "14",
+        "Coach_Type": "TC",
+        "IP_Address": "10.161.3.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "3",
+        "Coach_Position": "15",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.161.4.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "4",
+        "Coach_Position": "16",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.161.1.23"
+    }
+]
+   commonFunction(tabBU2);
+
+     }
+let tableFromJsonBU3 = () => {
+    // the json data.
+const tabBU3 = [
+    {
+        "Basic Unit": "1",
+        "Coach Number": "1",
+        "Coach_Position": "1",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.160.65.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "2",
+        "Coach_Position": "2",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.68.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "3",
+        "Coach_Position": "3",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.67.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "4",
+        "Coach_Position": "4",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.69.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "1",
+        "Coach_Position": "5",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.160.130.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "2",
+        "Coach_Position": "6",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.132.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "3",
+        "Coach_Position": "7",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.131.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "4",
+        "Coach_Position": "8",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.133.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "1",
+        "Coach_Position": "9",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.32.2.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "2",
+        "Coach_Position": "10",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.32.4.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "3",
+        "Coach_Position": "11",
+        "Coach_Type": "TC",
+        "IP_Address": "10.32.3.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "4",
+        "Coach_Position": "12",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.32.5.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "1",
+        "Coach_Position": "13",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.161.5.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "2",
+        "Coach_Position": "14",
+        "Coach_Type": "TC",
+        "IP_Address": "10.161.3.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "3",
+        "Coach_Position": "15",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.161.4.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "4",
+        "Coach_Position": "16",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.161.1.23"
+    }
+]
+    commonFunction(tabBU3);
+     }
+
+	 let tableFromJsonBU4 = () => {
+    // the json data.
+const tabBU4 = [
+    {
+        "Basic Unit": "1",
+        "Coach Number": "1",
+        "Coach_Position": "1",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.160.65.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "2",
+        "Coach_Position": "2",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.68.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "3",
+        "Coach_Position": "3",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.67.23"
+    },
+    {
+        "Basic Unit": "1",
+        "Coach Number": "4",
+        "Coach_Position": "4",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.69.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "1",
+        "Coach_Position": "5",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.160.130.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "2",
+        "Coach_Position": "6",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.132.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "3",
+        "Coach_Position": "7",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.131.23"
+    },
+    {
+        "Basic Unit": "2",
+        "Coach Number": "4",
+        "Coach_Position": "8",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.133.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "1",
+        "Coach_Position": "9",
+        "Coach_Type": "NDTC",
+        "IP_Address": "10.160.194.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "2",
+        "Coach_Position": "10",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.160.196.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "3",
+        "Coach_Position": "11",
+        "Coach_Type": "TC",
+        "IP_Address": "10.160.195.23"
+    },
+    {
+        "Basic Unit": "3",
+        "Coach Number": "4",
+        "Coach_Position": "12",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.160.197.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "1",
+        "Coach_Position": "13",
+        "Coach_Type": "MC2",
+        "IP_Address": "10.32.5.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "2",
+        "Coach_Position": "14",
+        "Coach_Type": "TC",
+        "IP_Address": "10.32.3.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "3",
+        "Coach_Position": "15",
+        "Coach_Type": "MC1",
+        "IP_Address": "10.32.4.23"
+    },
+    {
+        "Basic Unit": "4",
+        "Coach Number": "4",
+        "Coach_Position": "16",
+        "Coach_Type": "DTC",
+        "IP_Address": "10.32.1.23"
+    }
+
+]
+    commonFunction(tabBU4);
+     }
+
+</script>
+</html>
